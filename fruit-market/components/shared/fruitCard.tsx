@@ -1,6 +1,6 @@
 import { Fruit } from "@/types/fruit";
-import { Button } from "./button";
-import {  Card, CardContent, CardFooter, CardHeader, CardTitle } from "./card";
+import { Button } from "../ui/button";
+import {  Card, CardContent, CardFooter, CardHeader, CardTitle } from "../ui/card";
 import { Badge } from "lucide-react";
 
 interface FruitCardProps{
