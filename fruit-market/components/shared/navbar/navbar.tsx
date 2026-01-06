@@ -16,8 +16,6 @@ export default function NavBar() {
     { name: "Home", href: "/" },
     { name: "Fruits", href: "/fruit" },
     { name: "Bundles", href: "/bundle" },
-
-    { name: "Admin", href: "/admin" },
     { name: "About us", href: "/about" },
   ];
 
@@ -60,7 +58,7 @@ export default function NavBar() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="text-lg font-semibold"
+                    className="text-lg font-bold hover:text-green-600 transition"
                   >
                     {link.name}
                   </Link>
