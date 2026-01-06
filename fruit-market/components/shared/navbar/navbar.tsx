@@ -3,14 +3,22 @@
 import Link from "next/link";
 import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetTitle,
+  SheetDescription,
+} from "@/components/ui/sheet";
 
 export default function NavBar() {
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "Fruits", href: "/fruit" },
+    { name: "Bundles", href: "/bundle" },
+
     { name: "Admin", href: "/admin" },
-    {name:"About us", href:"/about"},
+    { name: "About us", href: "/about" },
   ];
 
   return (

@@ -1,10 +1,7 @@
-import FruitCard from "@/components/shared/fruitCard";
-import BundleCard from "@/components/shared/bundle_card/BundleCard";
 import { Fruit } from "@/types/fruit";
 import { Bundle } from "@/types/bundles";
-import { HighLightSlideShow } from "@/components/shared/slideshow/slideshow";
 
-const MOCK_BUNDLES: Bundle[] = [
+export const  MOCK_BUNDLES: Bundle[] = [
   {
     id: "1",
     name: "Lunar year special",
@@ -39,7 +36,7 @@ const MOCK_BUNDLES: Bundle[] = [
   },
 ];
 
-const MOCK_FRUITS: Fruit[] = [
+export const MOCK_FRUITS: Fruit[] = [
   {
     id: "1",
     name: "Organic Honeycrisp Apple",
@@ -59,25 +56,3 @@ const MOCK_FRUITS: Fruit[] = [
     inStock: false,
   },
 ];
-
-export default function Home() {
-  return (
-    <main className="container mx-auto py-10">
-      <HighLightSlideShow></HighLightSlideShow>
-
-      <h1 className="text-4xl font-bold mb-8">Bundles</h1>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {MOCK_BUNDLES.map((bundle) => (
-          <BundleCard key={bundle.id} bundle={bundle}></BundleCard>
-        ))}
-      </div>
-      
-      <h1 className="text-4xl font-bold mb-8">Fruits</h1>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {MOCK_FRUITS.map((fruit) => (
-          <FruitCard key={fruit.id} fruit={fruit} />
-        ))}
-      </div>
-    </main>
-  );
-}
