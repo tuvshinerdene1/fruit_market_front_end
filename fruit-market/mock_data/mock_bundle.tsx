@@ -7,6 +7,7 @@ export const  MOCK_BUNDLES: Bundle[] = [
     name: "Lunar year special",
     price: 100,
     image: "/mock_image/fruit_bundle.jpg",
+    
     fruits: ["banana", "apple", "pineapple"],
     instock: true,
   },
