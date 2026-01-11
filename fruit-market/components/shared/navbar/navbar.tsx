@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Menu } from "lucide-react";
+import { Menu, Heart, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -10,6 +10,7 @@ import {
   SheetTitle,
   SheetDescription,
 } from "@/components/ui/sheet";
+import { SearchBar } from "../searchbar/searchbar";
 
 export default function NavBar() {
   const navLinks = [
@@ -26,7 +27,23 @@ export default function NavBar() {
         <Link href={"/"} className="text-xl font-bold text-green-600">
           Fruit Market.mn
         </Link>
-
+        <SearchBar></SearchBar>
+        <Button
+          variant={"ghost"}
+          size={"icon"}
+          className="rounded-full hover:bg-red-50 hover:text-red-600 transition-colors"
+        >
+          <Heart className="h-5 w-5" />
+          <span className="sr-only">Wishlist</span>
+        </Button>
+        <Button
+          variant={"ghost"}
+          size={"icon"}
+          className="rounded-full hover:bg-red-50 hover:text-red-600 transition-colors"
+        >
+          <ShoppingCart className="h-5 w-5" />
+          <span className="sr-only">ShoppingCart</span>
+        </Button>
         {/*Desktop nav */}
 
         <div className="hidden md:flex gap-6">
