@@ -14,6 +14,7 @@ export default function Home() {
   var delay_dur = 1;
 
   return (
+    <FadeIn delay={0.3}>
     <main className="min-h-screen pb-20">
       {/* 1. Hero / Slideshow Section */}
       <section className="container mx-auto pt-6 pb-12 px-4">
@@ -119,5 +120,6 @@ export default function Home() {
         </div>
       </section>
     </main>
+    </FadeIn>
   );
 }

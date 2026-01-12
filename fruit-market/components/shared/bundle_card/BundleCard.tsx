@@ -1,51 +1,50 @@
 import { Bundle } from "@/types/bundles";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import Link from "next/link";
 
 interface BundleCardProps {
   bundle: Bundle;
 }
 import { LikeButton } from "../like_button/LikeButton";
+import AddCart from "../add_to_cart/add_cart";
+
 
 export default function BundleCard({ bundle }: BundleCardProps) {
   return (
-    <Link href={`/bundle/${bundle.id}`}>
-      <Card className="overflow-hidden hover:shadow-2xl transition-shadow">
-        <div className="aspect-square bg-muted relative">
+     <Link href={`/bundle/${bundle.id}`}>
+      <div className="group bg-white rounded-2xl overflow-hidden border border-slate-100 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
+        {/* Image Container */}
+        <div className="relative aspect-square overflow-hidden bg-slate-100">
           <img
             src={bundle.image}
             alt={bundle.name}
-            className="object-cover w-full h-full"
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
           />
-          {/**Like button */}
+
+          {/* Like button */}
           <div className="absolute top-3 right-3">
             <LikeButton productId={bundle.id} />
           </div>
         </div>
-        <CardHeader>
-          <div className="flex justify-between items-center">
-            <CardTitle className="text-xl">{bundle.name}</CardTitle>
+
+        {/* Content */}
+        <div className="p-4 md:p-6 text-center">
+          <h3 className="text-sm md:text-base font-bold text-slate-800 mb-1 group-hover:text-green-600 transition-colors">
+            {bundle.name}
+          </h3>
+          <div className="text-lg font-black text-slate-900">
+            {bundle.price.toLocaleString()}₮
           </div>
-        </CardHeader>
-        <CardContent>
-          <p className="text-2xl font-bold text-green-600">
-            ${bundle.price.toFixed(2)}
-          </p>
-          <p className="text-sm text-gray-500">{bundle.fruits.join(", ")}</p>
-        </CardContent>
-        <CardFooter>
-          <Button className="w-full" disabled={!bundle.instock}>
-            {bundle.instock ? "Add to Cart" : "Notify Me"}
-          </Button>
-        </CardFooter>
-      </Card>
+
+          {/* <div className="mt-4 w-full bg-slate-900 text-white py-2 rounded-xl text-sm font-semibold hover:bg-green-600 transition-colors">
+            Сагслах
+          </div> */}
+          <AddCart productId={bundle.id}></AddCart>
+          <div className="mt-4 w-full bg-slate-900 text-white py-2 rounded-xl text-sm font-semibold hover:bg-green-600 transition-colors">
+            Buy now 
+          </div>
+        </div>
+      </div>
     </Link>
   );
 }

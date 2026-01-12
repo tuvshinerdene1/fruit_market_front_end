@@ -1,13 +1,4 @@
 import { Fruit } from "@/types/fruit";
-import { Button } from "../../ui/button";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "../../ui/card";
-import { Badge } from "lucide-react";
 import Link from "next/link";
 import { LikeButton } from "../like_button/LikeButton";
 
@@ -45,6 +36,9 @@ export default function FruitCard({ fruit }: FruitCardProps) {
 
           <div className="mt-4 w-full bg-slate-900 text-white py-2 rounded-xl text-sm font-semibold hover:bg-green-600 transition-colors">
             Сагслах
+          </div>
+          <div className="mt-4 w-full bg-slate-900 text-white py-2 rounded-xl text-sm font-semibold hover:bg-green-600 transition-colors">
+            Buy now 
           </div>
         </div>
       </div>
