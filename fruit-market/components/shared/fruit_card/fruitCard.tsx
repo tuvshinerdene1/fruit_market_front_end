@@ -9,6 +9,7 @@ import {
 } from "../../ui/card";
 import { Badge } from "lucide-react";
 import Link from "next/link";
+import { LikeButton } from "../like_button/LikeButton";
 
 interface FruitCardProps {
   fruit: Fruit;
@@ -25,6 +26,11 @@ export default function FruitCard({ fruit }: FruitCardProps) {
             alt={fruit.name}
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
           />
+
+          {/* Like button */}
+          <div className="absolute top-3 right-3">
+            <LikeButton productId={fruit.id} />
+          </div>
         </div>
 
         {/* Content */}

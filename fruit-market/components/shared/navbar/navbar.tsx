@@ -28,14 +28,14 @@ export default function NavBar() {
           Fruit Market.mn
         </Link>
         <SearchBar></SearchBar>
-        <Button
-          variant={"ghost"}
-          size={"icon"}
+
+        <Link
+          href={"/liked"}
           className="rounded-full hover:bg-red-50 hover:text-red-600 transition-colors"
         >
-          <Heart className="h-5 w-5" />
+          <Heart className="h-5 w-5"></Heart>
           <span className="sr-only">Wishlist</span>
-        </Button>
+        </Link>
         <Button
           variant={"ghost"}
           size={"icon"}

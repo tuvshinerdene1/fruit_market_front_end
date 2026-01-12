@@ -12,6 +12,7 @@ import Link from "next/link";
 interface BundleCardProps {
   bundle: Bundle;
 }
+import { LikeButton } from "../like_button/LikeButton";
 
 export default function BundleCard({ bundle }: BundleCardProps) {
   return (
@@ -23,6 +24,10 @@ export default function BundleCard({ bundle }: BundleCardProps) {
             alt={bundle.name}
             className="object-cover w-full h-full"
           />
+          {/**Like button */}
+          <div className="absolute top-3 right-3">
+            <LikeButton productId={bundle.id} />
+          </div>
         </div>
         <CardHeader>
           <div className="flex justify-between items-center">
