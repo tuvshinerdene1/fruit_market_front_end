@@ -1,7 +1,7 @@
 import { Fruit } from "@/types/fruit";
 import Link from "next/link";
 import { LikeButton } from "../like_button/LikeButton";
-
+import AddCart from "../add_to_cart/add_cart";
 interface FruitCardProps {
   fruit: Fruit;
 }
@@ -34,9 +34,10 @@ export default function FruitCard({ fruit }: FruitCardProps) {
             {fruit.price.toLocaleString()}₮
           </div>
 
-          <div className="mt-4 w-full bg-slate-900 text-white py-2 rounded-xl text-sm font-semibold hover:bg-green-600 transition-colors">
+          {/* <div className="mt-4 w-full bg-slate-900 text-white py-2 rounded-xl text-sm font-semibold hover:bg-green-600 transition-colors">
             Сагслах
-          </div>
+          </div> */}
+          <AddCart productId={fruit.id}></AddCart>
           <div className="mt-4 w-full bg-slate-900 text-white py-2 rounded-xl text-sm font-semibold hover:bg-green-600 transition-colors">
             Buy now 
           </div>
