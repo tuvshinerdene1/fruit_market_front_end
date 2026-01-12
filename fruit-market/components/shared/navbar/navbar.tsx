@@ -36,14 +36,22 @@ export default function NavBar() {
           <Heart className="h-5 w-5"></Heart>
           <span className="sr-only">Wishlist</span>
         </Link>
-        <Button
+
+        {/* <Button
           variant={"ghost"}
           size={"icon"}
           className="rounded-full hover:bg-red-50 hover:text-red-600 transition-colors"
         >
           <ShoppingCart className="h-5 w-5" />
           <span className="sr-only">ShoppingCart</span>
-        </Button>
+        </Button> */}
+        <Link
+          href={"/cart"}
+          className="rounded-full hover:bg-red-50 hover:text-red-600 transition-colors"
+        >
+          <ShoppingCart className="h-5 w-5" />
+          <span className="sr-only">ShoppingCart</span>
+        </Link>
         {/*Desktop nav */}
 
         <div className="hidden md:flex gap-6">
