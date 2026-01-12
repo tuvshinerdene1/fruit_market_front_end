@@ -16,57 +16,56 @@ export default async function BundleDetailPage({
   if (!bundle) return <div>Bundle not found</div>;
   return (
     <FadeIn>
- <div className="container mx-auto px-6 py-12 lg:py-24">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items center">
-        {/** large image */}
-        <div className="bg-stone-50 rounded-3xl p-8 flex justify-center">
-          <img
-            src={bundle.image}
-            alt={bundle.name}
-            className="max-h-[500px] object-contain drop-shadow-2xl"
-          />
-        </div>
+      <div className="container mx-auto px-6 py-12 lg:py-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items center">
+          {/** large image */}
+          <div className="bg-stone-50 rounded-3xl p-8 flex justify-center">
+            <img
+              src={bundle.image}
+              alt={bundle.name}
+              className="max-h-[500px] object-contain drop-shadow-2xl"
+            />
+          </div>
 
-        {/** product details and actions  */}
-        <div className="space-y-6">
-          <Badge
-            variant="outline"
-            className="text-green-600 border-green-200 bg-green-50"
-          >
-            {/* {bundle.category.toUpperCase()} */}
-          </Badge>
-          <h1 className="text-4xl font-serif text-slate-900">{bundle.name}</h1>
-          <p className="text-2xl font-bold text-slate-800">{bundle.price}₮</p>
+          {/** product details and actions  */}
+          <div className="space-y-6">
 
-          <p className="text-slate-500 leading-relaxed">
-            Freshly picked and delivered to your doorstep. This premium quality
-            {bundle.name} is selected for its peak ripeness and flavor.
-          </p>
+            <h1 className="text-4xl font-serif text-slate-900">
+              {bundle.name}
+            </h1>
 
-          <div className="flex flex-col sm:flex-row gap-4 pt-6">
-            {/* Logic: Adds to LocalStorage/Cart State */}
-            <Button
-              size="lg"
-              variant="outline"
-              className="flex-1 rounded-full border-2 border-slate-900 h-14"
-            >
-              <ShoppingCart className="mr-2 h-5 w-5" />
-              Add to Cart
-            </Button>
+            <p className="text-slate-500 leading-relaxed">
+              Freshly picked and delivered to your doorstep. This premium
+              quality
+              {bundle.name} is selected for its peak ripeness and flavor.
+            </p>
+            <p className="text-slate-400 leading-relaxed">{bundle.fruits.join(", ")}</p>
 
-            {/* Logic: Adds to Cart AND pushes to /checkout */}
-            <Button
-              size="lg"
-              className="flex-1 rounded-full bg-slate-900 hover:bg-green-600 h-14"
-            >
-              <Zap className="mr-2 h-5 w-5 fill-current" />
-              Buy It Now
-            </Button>
+            <p className="text-2xl font-bold text-slate-800">{bundle.price}₮</p>
+
+            <div className="flex flex-col sm:flex-row gap-4 pt-6">
+              {/* Logic: Adds to LocalStorage/Cart State */}
+              <Button
+                size="lg"
+                variant="outline"
+                className="flex-1 rounded-full border-2 border-slate-900 h-14"
+              >
+                <ShoppingCart className="mr-2 h-5 w-5" />
+                Add to Cart
+              </Button>
+
+              {/* Logic: Adds to Cart AND pushes to /checkout */}
+              <Button
+                size="lg"
+                className="flex-1 rounded-full bg-slate-900 hover:bg-green-600 h-14"
+              >
+                <Zap className="mr-2 h-5 w-5 fill-current" />
+                Buy It Now
+              </Button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
     </FadeIn>
-   
   );
 }

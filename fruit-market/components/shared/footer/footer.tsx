@@ -48,7 +48,7 @@ return (
 
           {/* Column 4: Social Media */}
           <div>
-            <h3 className="font-semibold text-slate-900 mb-4">Дагаж мөрдөх</h3>
+            <h3 className="font-semibold text-slate-900 mb-4">Биднийг дагаарай</h3>
             <div className="flex gap-4">
               <a href="#" className="p-2 bg-white border border-slate-200 rounded-full text-blue-600 hover:bg-blue-50 transition shadow-sm">
                 <Facebook size={20} />

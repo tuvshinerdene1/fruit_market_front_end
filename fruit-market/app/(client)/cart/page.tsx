@@ -105,9 +105,12 @@ export default function CheckoutList() {
               </div>
             </div>
 
-            <button className="w-full bg-slate-900 text-white py-5 rounded-2xl font-bold hover:bg-slate-800 transition-all active:scale-[0.98] shadow-lg shadow-slate-200">
+<Link href={"/checkout/"}>
+            <div className="text-center w-full bg-slate-900 text-white py-6 rounded-2xl font-bold hover:bg-green-600 transition-all active:scale-[0.98] shadow-lg shadow-slate-200 text-lg">
               Захиалга баталгаажуулах
-            </button>
+            </div>
+</Link>
+
             
             <div className="mt-6 flex flex-col gap-3">
                 <div className="flex items-center gap-2 text-[11px] text-stone-400">

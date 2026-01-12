@@ -20,7 +20,7 @@ export default function LikedPage() {
 
   useEffect(() => {
     const handleUpdate = () => {
-      const saved = JSON.parse(localStorage.getItem("favourites") || "[}");
+      const saved = JSON.parse(localStorage.getItem("favourites") || "[]");
       setLikedIds(saved);
     };
 

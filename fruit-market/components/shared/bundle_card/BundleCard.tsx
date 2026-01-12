@@ -40,9 +40,6 @@ export default function BundleCard({ bundle }: BundleCardProps) {
             Сагслах
           </div> */}
           <AddCart productId={bundle.id}></AddCart>
-          <div className="mt-4 w-full bg-slate-900 text-white py-2 rounded-xl text-sm font-semibold hover:bg-green-600 transition-colors">
-            Buy now 
-          </div>
         </div>
       </div>
     </Link>

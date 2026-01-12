@@ -42,7 +42,7 @@ export default function NavBar() {
         {/* Logo - Elegant & Clean */}
         <Link href="/" className="flex flex-col leading-none group">
           <span className="text-xl font-black tracking-tighter text-slate-900 group-hover:text-green-600 transition-colors">
-            FRUIT MARKET<span className="text-green-500">.MN</span>
+            SHINY FRUIT<span className="text-green-500">.MN</span>
           </span>
           <span className="text-[10px] uppercase tracking-[0.2em] text-stone-400 font-bold">Premium Fresh</span>
         </Link>
