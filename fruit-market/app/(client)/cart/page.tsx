@@ -91,10 +91,6 @@ export default function CheckoutPage() {
             setIsPickup={setIsPickup} 
           />
           
-          <PaymentMethod 
-            selectedPayment={selectedPayment} 
-            setSelectedPayment={setSelectedPayment} 
-          />
         </div>
 
         {/* RIGHT COLUMN: Summary */}

@@ -6,6 +6,7 @@ import { HighLightSlideShow } from "@/components/shared/slideshow/slideshow";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react"; // npm install lucide-react
 import { FadeIn } from "@/components/animations/fade-in";
+import StickyCartBar from "@/components/shared/StickyCartBar/sticky_cart_bar";
 
 export default function Home() {
   // We only show the top 3-4 items on the home page

@@ -2,7 +2,9 @@
 import { useState } from "react";
 import { Plus, Minus, CheckCircle2, CreditCard } from "lucide-react";
 import { toast } from "sonner";
-import { useRouter } from "next/navigation"; // To handle redirect
+import { useRouter } from "next/navigation";
+// 1. Import the hook
+import { useCart } from "@/hooks/useCart";
 
 interface AddCartProps {
   productId: string;
@@ -11,34 +13,26 @@ interface AddCartProps {
 export default function AddCart({ productId }: AddCartProps) {
   const [quantity, setQuantity] = useState(1);
   const router = useRouter();
+  
+  // 2. Destructure the function from the hook
+  const { addToCart } = useCart(); 
 
-  const adjustQuantity = (amount: number, e: React.MouseEvent) => {
+  const preventClick = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
+  };
+
+  const adjustQuantity = (amount: number, e: React.MouseEvent) => {
+    preventClick(e);
     setQuantity((prev) => Math.max(1, prev + amount));
   };
 
-  // Shared logic for updating localStorage
-  const saveToCart = () => {
-    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
-    const existingItemIndex = cart.findIndex((item: any) => item.id === productId);
-    let newCart = [...cart];
-
-    if (existingItemIndex !== -1) {
-      newCart[existingItemIndex].quantity += quantity;
-    } else {
-      newCart.push({ id: productId, quantity: quantity });
-    }
-
-    localStorage.setItem("cart", JSON.stringify(newCart));
-    window.dispatchEvent(new Event("cartUpdated"));
-  };
-
   const handleAddToCart = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    saveToCart();
+    preventClick(e);
     
+    // 3. Use the hook function instead of writing logic here
+    addToCart(productId, quantity);
+
     toast.success(`${quantity} ширхэгийг амжилттай сагслаа!`, {
       icon: <CheckCircle2 className="text-green-500" />,
     });
@@ -46,20 +40,22 @@ export default function AddCart({ productId }: AddCartProps) {
   };
 
   const handleBuyNow = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    
-    // 1. Save the quantity chosen
-    saveToCart();
-    
-    // 2. Immediate redirect to checkout
-    router.push("/cart");
+    preventClick(e);
+
+    // 4. Use the hook here too
+    addToCart(productId, quantity);
+
+    // Redirect
+    router.push("/cart"); // Ensure this matches your page path
   };
 
   return (
     <div className="space-y-3">
       {/* Quantity Selector */}
-      <div className="flex items-center justify-between bg-stone-100 rounded-xl p-1 border border-stone-200/50">
+      <div
+        onClick={preventClick}
+        className="flex items-center justify-between bg-stone-100 rounded-xl p-1 border border-stone-200/50"
+      >
         <button
           onClick={(e) => adjustQuantity(-1, e)}
           className="p-2 hover:bg-white hover:shadow-sm rounded-lg transition-all active:scale-90"
@@ -77,16 +73,16 @@ export default function AddCart({ productId }: AddCartProps) {
 
       <div className="flex flex-col gap-2">
         {/* Add to Cart */}
-        <button 
-          onClick={handleAddToCart} 
+        <button
+          onClick={handleAddToCart}
           className="w-full bg-white border border-slate-200 text-slate-900 py-3 rounded-xl text-sm font-semibold hover:bg-stone-50 transition-all active:scale-95 flex items-center justify-center gap-2"
         >
           Сагслах
         </button>
 
-        {/* Buy Now - Direct to Checkout */}
-        <button 
-          onClick={handleBuyNow} 
+        {/* Buy Now */}
+        <button
+          onClick={handleBuyNow}
           className="w-full bg-slate-900 text-white py-3 rounded-xl text-sm font-bold hover:bg-green-600 transition-all active:scale-95 flex items-center justify-center gap-2"
         >
           <CreditCard size={16} />

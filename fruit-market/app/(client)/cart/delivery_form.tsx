@@ -1,29 +1,29 @@
-import {User, Phone, MapPin, MessageSquare} from "lucide-react"
+import { User, Phone, MapPin, MessageSquare, Clock } from "lucide-react"; // Added Clock icon
 import React from "react";
 import { ChangeEvent } from "react";
 
 type FormChangeEvent = ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>;
 
-interface DeliveryFormProps{
-    formData:{
-        name:string;
-        phone:string;
-        district:string;
-        address: string;
-        note:string;
-    };
-    handleInputChange:(e:FormChangeEvent) => void;
-    isPickUp: boolean;
-    setIsPickup: (val: boolean) => void;
+interface DeliveryFormProps {
+  formData: {
+    name: string;
+    phone: string;
+    district: string;
+    address: string;
+    note: string;
+  };
+  handleInputChange: (e: FormChangeEvent) => void;
+  isPickUp: boolean;
+  setIsPickup: (val: boolean) => void;
 }
 
 export default function DeliveryForm({
-    formData,
-    handleInputChange,
-    isPickUp,
-    setIsPickup,
-}:DeliveryFormProps){
-     return (
+  formData,
+  handleInputChange,
+  isPickUp,
+  setIsPickup,
+}: DeliveryFormProps) {
+  return (
     <section>
       <div className="flex items-baseline mb-6 border-b border-stone-100 pb-4">
         <h2 className="text-2xl font-black text-slate-900">2. Хүлээн авах мэдээлэл</h2>
@@ -34,7 +34,9 @@ export default function DeliveryForm({
         <button
           onClick={() => setIsPickup(false)}
           className={`p-4 rounded-2xl border-2 transition-all text-sm font-bold ${
-            !isPickUp ? "border-slate-900 bg-slate-900 text-white" : "border-stone-100 bg-stone-50 text-stone-500"
+            !isPickUp
+              ? "border-slate-900 bg-slate-900 text-white"
+              : "border-stone-100 bg-stone-50 text-stone-500"
           }`}
         >
           Хүргүүлж авах
@@ -42,15 +44,17 @@ export default function DeliveryForm({
         <button
           onClick={() => setIsPickup(true)}
           className={`p-4 rounded-2xl border-2 transition-all text-sm font-bold ${
-            isPickUp ? "border-slate-900 bg-slate-900 text-white" : "border-stone-100 bg-stone-50 text-stone-500"
+            isPickUp
+              ? "border-slate-900 bg-slate-900 text-white"
+              : "border-stone-100 bg-stone-50 text-stone-500"
           }`}
         >
           Очиж авах
         </button>
       </div>
 
-      {/* Input Fields */}
       <div className="bg-stone-50/50 p-8 rounded-[2rem] border border-stone-100 space-y-6">
+        {/* Name and Phone are ALWAYS required */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-2">
             <label className="text-xs font-bold text-stone-500 uppercase flex items-center gap-2">
@@ -80,9 +84,9 @@ export default function DeliveryForm({
           </div>
         </div>
 
-        {/* Address Logic */}
+        {/* Address Logic - Only for Delivery */}
         {!isPickUp ? (
-          <div className="space-y-6 animate-in fade-in duration-300">
+          <div className="space-y-6 animate-in fade-in slide-in-from-top-4 duration-300">
             <div className="space-y-2">
               <label className="text-xs font-bold text-stone-500 uppercase flex items-center gap-2">
                 <MapPin size={14} /> Дүүрэг
@@ -116,22 +120,24 @@ export default function DeliveryForm({
             </div>
           </div>
         ) : (
-          <div className="p-6 bg-green-50 rounded-2xl border border-green-100 text-sm text-green-800">
+          <div className="p-6 bg-green-50 rounded-2xl border border-green-100 text-sm text-green-800 animate-in fade-in zoom-in duration-300">
             <p className="font-bold mb-1">Очиж авах хаяг:</p>
             <p>Сүхбаатар дүүрэг, Саруул захын 1-р давхар, 3-р павильон</p>
           </div>
         )}
 
+        {/* Note Field - Changes text based on mode */}
         <div className="space-y-2 pt-2 border-t border-stone-100">
           <label className="text-xs font-bold text-stone-500 uppercase flex items-center gap-2">
-            <MessageSquare size={14} /> Нэмэлт тэмдэглэл (заавал биш)
+            {isPickUp ? <Clock size={14}/> : <MessageSquare size={14} />} 
+            {isPickUp ? "Хэзээ ирж авах вэ?" : "Нэмэлт тэмдэглэл (заавал биш)"}
           </label>
           <input
             type="text"
             name="note"
             value={formData.note}
             onChange={handleInputChange}
-            placeholder="Код, хаалганы мэдээлэл г.м"
+            placeholder={isPickUp ? "Жишээ нь: Өнөөдөр 18:00 цагт" : "Код, хаалганы мэдээлэл г.м"}
             className="w-full p-4 rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-slate-900 bg-white"
           />
         </div>
