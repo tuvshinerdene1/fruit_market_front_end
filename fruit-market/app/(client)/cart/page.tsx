@@ -86,7 +86,6 @@ export default function CheckoutList() {
               ):(
                 <div>Бүтээгдэхүүн сонгоогүй байна.</div>
               )}
-              {cartItems.length} нэр төрөл
             </span>
           </div>
 
