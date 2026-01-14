@@ -1,53 +1,69 @@
-"use client"
-import {useState, useEffect} from "react";
-import {Heart} from "lucide-react";
+"use client";
+import { useState, useEffect, useCallback } from "react";
+import { Heart } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface LikeButtonProps {
-    productId: String;
+  productId: string;
 }
 
-export function LikeButton({productId}: LikeButtonProps){
-    const [isLiked, setIsLiked] = useState(false);
+export function LikeButton({ productId }: LikeButtonProps) {
+  const [isLiked, setIsLiked] = useState(false);
 
-    // checking local storage on load
-    useEffect(()=>{
-        const favourites = JSON.parse(localStorage.getItem("favourites") || "[]");
-        setIsLiked(favourites.includes(productId));
-    },[productId]);
+  // 1. Move the check logic to a reusable function
+  const checkLikeStatus = useCallback(() => {
+    if (typeof window !== "undefined") {
+      const favourites = JSON.parse(localStorage.getItem("favourites") || "[]");
+      setIsLiked(favourites.includes(productId));
+    }
+  }, [productId]);
 
-    const toggleLike = (e: React.MouseEvent) => {
-        {/** preventing bubbling up to parent and preventing default wrapper behaviour */}
-        e.preventDefault();
-        e.stopPropagation();
+  useEffect(() => {
+    // 2. Check status on mount
+    checkLikeStatus();
 
-        const favourites = JSON.parse(localStorage.getItem("favourites") || "[]");
-        let newFavourites;
+    // 3. Listen for the custom event we dispatch
+    window.addEventListener("favouritesUpdated", checkLikeStatus);
 
-        if (isLiked) {
-            newFavourites = favourites.filter((id:string) => id !== productId);
-        }else{
-            newFavourites = [...favourites, productId];
-        }
+    // 4. Also listen for storage changes (handles sync across different browser tabs)
+    window.addEventListener("storage", checkLikeStatus);
 
-        localStorage.setItem("favourites", JSON.stringify(newFavourites));
-        setIsLiked(!isLiked);
-    
-        window.dispatchEvent(new Event("favouritesUpdated"));
+    return () => {
+      window.removeEventListener("favouritesUpdated", checkLikeStatus);
+      window.removeEventListener("storage", checkLikeStatus);
     };
+  }, [checkLikeStatus]);
 
-    return (
-        <button
-            onClick={toggleLike}
-            className="group p-2 rounded-full bg-white/80 backdrop-blur-sm shadow-sm hover:scale-110 transition-transform">
-            <Heart
-             className={cn(
-          "h-5 w-5 transition-colors",
+  const toggleLike = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const favourites = JSON.parse(localStorage.getItem("favourites") || "[]");
+    let newFavourites;
+
+    if (isLiked) {
+      newFavourites = favourites.filter((id: string) => id !== productId);
+    } else {
+      newFavourites = [...favourites, productId];
+    }
+
+    localStorage.setItem("favourites", JSON.stringify(newFavourites));
+    
+    // 5. This triggers the event listeners in ALL LikeButton instances
+    window.dispatchEvent(new Event("favouritesUpdated"));
+  };
+
+  return (
+    <button
+      onClick={toggleLike}
+      className="group p-2.5 rounded-full bg-slate-50 border border-slate-100 shadow-sm hover:scale-110 active:scale-95 transition-all flex items-center justify-center"
+    >
+      <Heart
+        className={cn(
+          "h-5 w-5 transition-colors duration-300",
           isLiked ? "fill-red-500 text-red-500" : "text-slate-400 group-hover:text-red-400"
-        )}>
-
-            </Heart>
-        </button>
-    )
-
+        )}
+      />
+    </button>
+  );
 }

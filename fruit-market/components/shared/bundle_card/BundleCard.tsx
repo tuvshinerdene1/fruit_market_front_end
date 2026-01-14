@@ -20,11 +20,6 @@ export default function BundleCard({ bundle }: BundleCardProps) {
             alt={bundle.name}
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
           />
-
-          {/* Like button */}
-          <div className="absolute top-3 right-3">
-            <LikeButton productId={bundle.id} />
-          </div>
         </div>
 
         {/* Content */}
@@ -36,10 +31,19 @@ export default function BundleCard({ bundle }: BundleCardProps) {
             {bundle.price.toLocaleString()}₮
           </div>
 
-          {/* <div className="mt-4 w-full bg-slate-900 text-white py-2 rounded-xl text-sm font-semibold hover:bg-green-600 transition-colors">
-            Сагслах
-          </div> */}
-          <AddCart productId={bundle.id}></AddCart>
+          {/* <div className="flex items-center gap-2 w-full"> */}
+          <div className="flex justify-between w-full">
+            <div className="flex-[3]">
+              {" "}
+              {/* Takes 75% of space */}
+              <AddCart productId={bundle.id} />
+            </div>
+            <div className="flex-1">
+              {" "}
+              {/* Takes 25% of space */}
+              <LikeButton productId={bundle.id} />
+            </div>
+          </div>
         </div>
       </div>
     </Link>

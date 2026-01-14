@@ -10,7 +10,7 @@ export default function ClientLayout({
   return (
     <>
       <NavBar />
-      <main>
+      <main className="bg-[#F8F9FA]">
         {children}
       </main>
       {/* You can add a Footer here later */}

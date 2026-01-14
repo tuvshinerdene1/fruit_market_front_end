@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Menu, Heart, ShoppingBag, Search } from "lucide-react";
+import { Menu, Heart, ShoppingCart, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -75,7 +75,7 @@ export default function NavBar() {
             href="/cart"
             className="p-3 rounded-full hover:bg-stone-50 transition-colors relative group"
           >
-            <ShoppingBag className="h-5 w-5 text-slate-700 group-hover:text-green-600 transition-colors" strokeWidth={1.5} />
+            <ShoppingCart className="h-5 w-5 text-slate-700 group-hover:text-green-600 transition-colors" strokeWidth={1.5} />
             {cartCount > 0 && (
               <span className="absolute top-2 right-2 flex h-4 w-4 items-center justify-center rounded-full bg-green-600 text-[9px] font-bold text-white animate-in zoom-in">
                 {cartCount}
