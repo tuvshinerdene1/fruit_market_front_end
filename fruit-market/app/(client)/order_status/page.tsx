@@ -8,7 +8,7 @@ import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { OrderItemsList } from "./orderItemsList";
 import { OrderNotFound } from "./orderNotFound";
 import { DeliveryAddress } from "./deliverAddress";
-
+import { CancelOrderButton } from "./cancelOrder";
 
 
 export default function OrderStatusPage() {
@@ -40,6 +40,7 @@ export default function OrderStatusPage() {
           <Card>
             <CardHeader>...</CardHeader>
             <CardContent className="space-y-8">
+                
               <OrderStatusProgress status={foundOrder.status as OrderStatus} />
               <div className="grid md:grid-cols-2 gap-6 pt-4 border-t">
                  <DeliveryAddress order={foundOrder} />
@@ -49,6 +50,7 @@ export default function OrderStatusPage() {
                     total={foundOrder.total_price}
                  />
               </div>
+              <CancelOrderButton status={foundOrder.status as OrderStatus} orderId={foundOrder.id} />
             </CardContent>
           </Card>
         ) : (
