@@ -11,6 +11,7 @@ import {
   SheetTitle,
   SheetDescription,
 } from "@/components/ui/sheet";
+import { isHmrRefresh } from "next/dist/server/app-render/work-unit-async-storage.external";
 
 export default function NavBar() {
   const [cartCount, setCartCount] = useState(0);
@@ -33,6 +34,7 @@ export default function NavBar() {
     { name: "Жимс", href: "/fruit" },
     { name: "Сет жимс", href: "/bundle" },
     { name: "Бидний тухай", href: "/about" },
+    {name: "Захиалгын төлөв", href: "/order_status"}
   ];
 
   return (
