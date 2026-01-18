@@ -26,7 +26,7 @@ export default function OrderStatusPage() {
   return (
     <div className="max-w-2xl mx-auto p-4 md:p-8 space-y-8">
       <header className="text-center">
-        <h1 className="text-4xl font-bold">Fruit Tracker</h1>
+        <h1 className="text-4xl font-bold">Захиалгын төлөв</h1>
       </header>
 
       <OrderSearchForm 
