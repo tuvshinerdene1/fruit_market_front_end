@@ -16,7 +16,7 @@ export const MOCK_ORDERS: Order[] = [
   },
   {
     id: "ORD-002",
-    phone_number: "090-3333-4444",
+    phone_number: "99999999",
     district: "District 7",
     building: "Sunrise City",
     floor: "10",

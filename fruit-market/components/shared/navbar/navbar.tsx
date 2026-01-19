@@ -36,7 +36,7 @@ export default function NavBar() {
   ];
 
   return (
-    <nav className="sticky top-0 z-[100] w-full border-b border-stone-100 bg-white/80 backdrop-blur-md">
+    <nav className="absolute top-0 z-[100] w-full border-b border-stone-100 bg-white/80 backdrop-blur-md">
       <div className="max-w-7xl mx-auto flex h-24 items-center justify-between px-6">
         {/* Logo */}
         <Link href="/" className="flex flex-col leading-none group shrink-0">
