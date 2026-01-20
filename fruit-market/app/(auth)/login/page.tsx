@@ -45,7 +45,7 @@ export default function LoginPage() {
     setError("");
 
     const worker = MOCK_WORKERS.find(
-      (w) => w.phone_number === phone && w.password === password
+      (w) => w.phone_number === phone && w.password === password,
     );
 
     if (worker) {
@@ -62,7 +62,9 @@ export default function LoginPage() {
       <div className="flex items-center justify-center py-12">
         <div className="mx-auto grid w-[350px] gap-6">
           <div className="grid gap-2 text-center">
-            <h1 className="text-4xl font-serif font-bold tracking-tight">Ажилтнаар нэвтрэх</h1>
+            <h1 className="text-4xl font-serif font-bold tracking-tight">
+              Ажилтнаар нэвтрэх
+            </h1>
             <p className="text-balance text-muted-foreground">
               Утасны дугаар болон нууц үгээ оруулна уу.
             </p>
@@ -93,13 +95,23 @@ export default function LoginPage() {
               />
             </div>
 
-            {error && <p className="text-sm text-red-500 font-medium">{error}</p>}
+            {error && (
+              <p className="text-sm text-red-500 font-medium">{error}</p>
+            )}
 
             <Button
               type="submit"
               className="w-full rounded-xl bg-slate-900 hover:bg-green-700 py-6 text-base"
             >
               Нэвтрэх
+            </Button>
+            <Button
+              type="button" // Important: set to "button" so it doesn't trigger the form submit
+              variant="outline"
+              onClick={() => router.push("/")}
+              className="w-full rounded-xl border-slate-200 py-6 text-base"
+            >
+              Үндсэн веб рүү буцах
             </Button>
           </form>
         </div>
