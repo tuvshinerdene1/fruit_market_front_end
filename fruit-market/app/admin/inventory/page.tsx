@@ -13,7 +13,7 @@ import { Bundle } from "@/types/bundles";
 // UI Components
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { EditFruitDialog } from "@/components/shared/editFruitDialogue/editFruitDialogue";
-import { EditBundleDialog } from "@/components/editBundleDialog/editBundleDialog";
+import { EditBundleDialog } from "@/components/shared/editBundleDialog/editBundleDialog";
 import { DeleteConfirmDialog } from "@/components/shared/deleteConfirmDialogue/deleteConfirmDialogue";
 
 export default function InventoryPage() {
